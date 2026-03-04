@@ -1,4 +1,5 @@
 console.log("Thank you for using Quiltflower game emulator! Consider supporting me on GitHub: " + "github.com/chemthunder" + "! Thank you!");
+console.log("If you enjoyed using Quiltflower, check out my other projects, such as Hyacinth!");
 let showcaseEnabled = true;
 
 namespace Quiltflower {
