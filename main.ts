@@ -1,18 +1,43 @@
+console.log("Thank you for using Quiltflower game emulator! Consider supporting me on GitHub: " + "github.com/chemthunder" + "! Thank you!");
+let showcaseEnabled = true;
+
 namespace Quiltflower {
-    export let testCart:Emulator.Cart = Emulator.bootstrapNew("test", 0);
-    export let secondCart:Emulator.Cart = Emulator.bootstrapNew("secondTest", 1);
-    // registers two carts, using a string id and a number id.
+    if (showcaseEnabled) {
 
-    Emulator.loadCart(secondCart, _load);
-    // loads a cart, and connects a load function that will run upon start.
+        let testCart: Emulator.Cart = Emulator.bootstrapNew("test", 0);
+        let secondCart: Emulator.Cart = Emulator.bootstrapNew("secondTest", 1);
+        // registers two carts, using a string id and a number id.
+
+        Emulator.loadCart(testCart, _load);
+        // loads a cart, and connects a load function that will run upon start.
 
 
-    // the ran function upon loading a cart
-    export function _load() {
-        if (Emulator.getLoadedCart() == testCart) {
-            console.log("a");
-        } else {
-            console.log("b");
+        // the ran function upon loading a cart
+        function _load() {
+            QuiltCarts.run(Emulator.getLoadedCart().id); // uses a dedicated namespace for the carts
         }
+    }
+}
+
+namespace QuiltCarts {
+    export function run(id: number): void {
+        switch (id) {
+            case (0): {
+                run0();
+                break;
+            }
+            case (1): {
+                run1();
+                break;
+            }
+        }
+    }
+
+    function run0() { // this will run a cart if the loaded cart's id is 0
+        console.log("a");
+    }
+
+    function run1() {
+        console.log("b");
     }
 }

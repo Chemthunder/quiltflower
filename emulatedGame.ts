@@ -80,9 +80,15 @@ namespace Emulator {
     @param (optional) loadEvent The function to run upon loading a cart.
     */
     export function loadCart(cart: Cart, loadEvent?: Function): void {
+        try {
+            checkAllTest();
+        } catch {
+            crash(cart);
+        }
+
         loadedCart = cart;
         loadEvent();
-        checkAllTest();
+
     }
 
     
