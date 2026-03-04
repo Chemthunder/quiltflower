@@ -33,7 +33,7 @@ namespace QuiltCarts {
         }
     }
 
-    function run0() { // this will run a cart if the loaded cart's id is 0
+    function run0() { // this will run if the loaded cart's id is 0
         console.log("a");
     }
 

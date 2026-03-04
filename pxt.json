@@ -1,6 +1,6 @@
 {
     "name": "Quiltflower",
-    "description": "",
+    "description": "A simple game cartridge system allowing for multiple games to be stored and played dynamically within one project.",
     "dependencies": {
         "device": "*"
     },

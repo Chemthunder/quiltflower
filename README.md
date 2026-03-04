@@ -1,26 +1,8 @@
  
 
 
-> Open this page at [https://chemthunder.github.io/quiltflower/](https://chemthunder.github.io/quiltflower/)
+> Open [Quiltflower](https://chemthunder.github.io/quiltflower/) and use the provided MakeCode share link as an extension.
 
-## Use as Extension
+> Make sure the loaded Quiltflower version has `showcaseEnabled` set to false, otherwise it will override any provided programs!
 
-This repository can be added as an **extension** in MakeCode.
-
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/chemthunder/quiltflower** and import
-
-## Edit this project
-
-To edit this repository in MakeCode.
-
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/chemthunder/quiltflower** and click import
-
-#### Metadata (used for search, rendering)
-
-* for PXT/arcade
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+> Thank you for using Quiltflower by Chemthunder!
