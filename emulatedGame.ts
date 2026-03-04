@@ -37,7 +37,7 @@ namespace Emulator {
 
     // creates a new cart, akin to sprites.create
     export function bootstrapNew(name: string, id: number): Cart {
-        const cart = new Cart(name, id);
+        let cart = new Cart(name, id);
         carts.push(cart);
         cartStrings.push(name);
         return cart;

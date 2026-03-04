@@ -5,44 +5,42 @@ let isGameLoaded = false;
 
 
 namespace Quiltflower {
-    if (showcaseEnabled) {
-        let testCart: Emulator.Cart = Emulator.bootstrapNew("test", 0);
-        let secondCart: Emulator.Cart = Emulator.bootstrapNew("secondTest", 1);
-        // registers two carts, using a string id and a number id.
+    let testCart: Emulator.Cart = Emulator.bootstrapNew("Test1", 0);
+    let secondTest: Emulator.Cart = Emulator.bootstrapNew("Test2", 1);
+    let c = 0;
 
-        Emulator.loadCart(testCart, _load);
-        // loads a cart, and connects a load function that will run upon start.
+    for (let cart of Emulator.cartStrings) {
+        c ++;
+        let cartReadout = sprites.create(img`
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+        `);
 
-        // the ran function upon loading a cart
-        function _load() {
-            run(Emulator.getLoadedCart().id);
-        }
+        cartReadout.setPosition(scene.screenWidth() / 2, 0);
+        cartReadout.setPosition(cartReadout.x, 60 + c * 8);
 
-        function run(id: number): void {
-            switch (id) {
-                case (0): {
-                    run0();
-                    break;
-                }
-                case (1): {
-                    run1();
-                    break;
-                }
-            }
-        }
-
-        function run0() { // this will run if the loaded cart's id is 0
-            console.log("a");
-        }
-
-        function run1() {
-            console.log("b");
-        }
+        cartReadout.sayText(cart, Infinity, false, 1, 15);
     }
 
-    let hoveredCart:Emulator.Cart;
-    
-    controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
-        
-    });
+    Emulator.loadCart(testCart, _draw);
+
+    function _draw() {
+
+    }
+
+    game.showLongText(Emulator.carts.length, DialogLayout.Bottom);
 }
