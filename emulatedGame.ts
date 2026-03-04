@@ -11,10 +11,12 @@ namespace Emulator {
     export class Cart {
         _name: string; // The string id
         _id: number; // The numerical id of the cartridge. Should be higher than 0
+        _functionToLoad: Function;
 
-        constructor(_name: string, _id: number) {
+        constructor(_name: string, _id: number, _functionToLoad: Function) {
             this._name = _name;
             this._id = _id;
+            this._functionToLoad = _functionToLoad;
         }
 
         get name(): string {
@@ -25,6 +27,10 @@ namespace Emulator {
             return this._id;
         }
 
+        get functionToLoad(): Function {
+            return this._functionToLoad;
+        }
+
         set name(input: string) {
             this._name = input;
         }
@@ -32,12 +38,16 @@ namespace Emulator {
         set id(input: number) {
             this._id = input;
         }
+
+        set functionToLoad(input: Function) {
+            this._functionToLoad = input;
+        }
     }
 
 
     // creates a new cart, akin to sprites.create
-    export function bootstrapNew(name: string, id: number): Cart {
-        let cart = new Cart(name, id);
+    export function bootstrapNew(name: string, id: number, functionToLoad: Function): Cart {
+        let cart = new Cart(name, id, functionToLoad);
         carts.push(cart);
         cartStrings.push(name);
         return cart;
@@ -79,7 +89,7 @@ namespace Emulator {
     @param cart The cart to load
     @param (optional) loadEvent The function to run upon loading a cart.
     */
-    export function loadCart(cart: Cart, loadEvent?: Function): void {
+    export function loadCart(cart: Cart, loadFunction: Function): void {
         try {
             checkAllTest();
         } catch {
@@ -87,9 +97,6 @@ namespace Emulator {
         }
 
         loadedCart = cart;
-        loadEvent();
-
+        loadFunction();
     }
-
-    
 }
