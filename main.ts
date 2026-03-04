@@ -7,9 +7,8 @@ let isGameLoaded = false;
 namespace Quiltflower {
     let hover: number;
 
-    let testCart: Emulator.Cart = Emulator.bootstrapNew("Test1", 0);
-    let secondTest: Emulator.Cart = Emulator.bootstrapNew("Test2", 1);
-    let thirdTest: Emulator.Cart = Emulator.bootstrapNew("Test3", 2);
+    let testCart: Emulator.Cart = Emulator.bootstrapNew("Test", 0);
+    let main: Emulator.Cart = Emulator.bootstrapNew("Main", 1);
 
     let c = -4;
     hover = 1;
@@ -33,11 +32,10 @@ namespace Quiltflower {
             . . . . . . . . . . . . . . . .
             . . . . . . . . . . . . . . . .
             . . . . . . . . . . . . . . . .
-        `);
+        `, SpriteKind.Player);
 
         cartReadout.setPosition(20 + cart.length, 100);
         cartReadout.setPosition(cartReadout.x, 60 + c * 12);
-
         cartReadout.sayText(cart, Infinity, false, 1, 15);
     }
 
@@ -50,6 +48,29 @@ namespace Quiltflower {
                     hover = 1;
                 }
             }
+        }
+    });
+
+    controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+        let cartToLoad:Emulator.Cart;
+        let functionToLoad:Function;
+
+        if (!isGameLoaded) {
+            switch (hover) {
+                case (1): {
+                    cartToLoad = testCart;
+                    functionToLoad = Carts._runTest;
+                    break;
+                }
+
+                case (2): {
+                    cartToLoad = main;
+                    functionToLoad = Carts._runMain;
+                    break;
+                }
+            }
+
+            Emulator.loadCart(cartToLoad, functionToLoad);
         }
     });
 
