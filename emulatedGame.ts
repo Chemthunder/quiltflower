@@ -3,10 +3,10 @@ namespace Emulator {
         LOAD,
         STOP
     }
-    
+
     export let carts: Cart[] = []; // all registered cartridges
     export let cartStrings: String[] = []; // All cart string ids
-    export let loadedCart:Cart; // The currently loaded cart
+    export let loadedCart: Cart; // The currently loaded cart
 
     export class Cart {
         _name: string; // The string id
@@ -47,27 +47,32 @@ namespace Emulator {
 
     // creates a new cart, akin to sprites.create
     export function bootstrapNew(name: string, id: number, functionToLoad: Function): Cart {
-        const cart:Cart = new Cart(name, id, functionToLoad);
-        carts.push(cart);
-        cartStrings.push(name);
+        const cart: Cart = new Cart(name, id, functionToLoad);
+
+        if (cart != null) {
+            carts.push(cart);
+            cartStrings.push(name);
+        }
         return cart;
     }
 
     // tests each cart, crashes if any are null
     export function checkAllTest(): void {
-        let loadedCart:Cart;
-        let cardIDS:number[] = [];
-        let count:number = 0;
+        let loadedCart: Cart;
+        let cardIDS: number[] = [];
+        let count: number = 0;
 
         try {
-            for (let value of carts) {
-                count++;
-                const valueName: string = value.name;
-                const valueId: number = value.id;
+            if (loadedCart != null) {
+                for (let value of carts) {
+                    count++;
+                    const valueName: string = value.name;
+                    const valueId: number = value.id;
 
-                console.log("Loaded cart: " + valueName + " with ID: " + valueId);
-                loadedCart = value;
-                cardIDS.push(valueId);
+                    console.log("Loaded cart: " + valueName + " with ID: " + valueId);
+                    loadedCart = value;
+                    cardIDS.push(valueId);
+                }
             }
         } catch {
             crash(loadedCart);
@@ -75,7 +80,7 @@ namespace Emulator {
     }
 
     // crash system, throws a fatal error
-    function crash(cart:Cart) {
+    function crash(cart: Cart) {
         control.fail("Failed to load cart: " + cart.name);
     }
 

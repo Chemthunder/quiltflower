@@ -3,7 +3,7 @@ namespace Carts {
         scene.cameraShake(1.5, 400);
         pause(900);
 
-        sprites.destroyAllSpritesOfKind(SpriteKind.Player);
+        sprites.destroyAllSpritesOfKind(SpriteKind.UI);
         info.setScore(-1);
         info.showScore(false);
         console.log("Running cart: " + Emulator.getLoadedCart().name + " with ID: " + Emulator.getLoadedCart().id);
