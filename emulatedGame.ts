@@ -1,12 +1,7 @@
 namespace Emulator {
-    export enum CartEvents {
-        LOAD,
-        STOP
-    }
-
     export let carts: Cart[] = []; // all registered cartridges
     export let cartStrings: String[] = []; // All cart string ids
-    export let loadedCart: Cart; // The currently loaded cart
+    export let loadedCart: Cart = null; // The currently loaded cart
 
     export class Cart {
         _name: string; // The string id
@@ -95,13 +90,15 @@ namespace Emulator {
     @param (optional) loadEvent The function to run upon loading a cart.
     */
     export function loadCart(cart: Cart, loadFunction: Function): void {
-        try {
-            checkAllTest();
-        } catch {
-            crash(cart);
-        }
+        if (cart != null) {
+            try {
+                checkAllTest();
+            } catch {
+                crash(cart);
+            }
 
-        loadedCart = cart;
-        loadFunction();
+            loadedCart = cart;
+            loadFunction();
+        }
     }
 }
