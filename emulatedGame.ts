@@ -47,7 +47,7 @@ namespace Emulator {
 
     // creates a new cart, akin to sprites.create
     export function bootstrapNew(name: string, id: number, functionToLoad: Function): Cart {
-        let cart = new Cart(name, id, functionToLoad);
+        const cart:Cart = new Cart(name, id, functionToLoad);
         carts.push(cart);
         cartStrings.push(name);
         return cart;
@@ -56,8 +56,8 @@ namespace Emulator {
     // tests each cart, crashes if any are null
     export function checkAllTest(): void {
         let loadedCart:Cart;
-        let cardIDS = [];
-        let count = 0;
+        let cardIDS:number[] = [];
+        let count:number = 0;
 
         try {
             for (let value of carts) {

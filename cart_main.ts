@@ -1,5 +1,8 @@
 namespace Carts {
     export function _runCommon() {
+        scene.cameraShake(1.5, 400);
+        pause(900);
+
         sprites.destroyAllSpritesOfKind(SpriteKind.Player);
         info.setScore(-1);
         info.showScore(false);
@@ -9,7 +12,7 @@ namespace Carts {
     export function _runTest() {
         _runCommon();
 
-        
+        scene.setBackgroundColor(13);
     }
 
     export function _runMain() {

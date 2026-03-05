@@ -2,10 +2,11 @@ console.log("Thank you for using Quiltflower game emulator! Consider supporting 
 console.log("If you enjoyed using Quiltflower, check out my other projects, such as Hyacinth!");
 let showcaseEnabled = false;
 let isGameLoaded = false;
-let versionNumber = 1.2;
+let versionNumber = 1.3;
 
+/* Quiltflower   */
 namespace Quiltflower {
-    let miscInfo = sprites.create(img`
+    let miscInfo: Sprite = sprites.create(img`
         . . . . . . . . . . . . . . . .
         . . . . . . . . . . . . . . . .
         . . . . . . . . . . . . . . . .
@@ -22,7 +23,7 @@ namespace Quiltflower {
         . . . . . . . . . . . . . . . .
         . . . . . . . . . . . . . . . .
         . . . . . . . . . . . . . . . .
-    `, SpriteKind.Player);
+    `, SpriteKind.UI);
 
     miscInfo.setPosition(100, 120);
     miscInfo.sayText("Quiltflower v" + versionNumber, Infinity, false, 1, 15);
@@ -55,7 +56,7 @@ namespace Quiltflower {
             . . . . . . . . . . . . . . . .
             . . . . . . . . . . . . . . . .
             . . . . . . . . . . . . . . . .
-        `, SpriteKind.Player);
+        `, SpriteKind.UI);
 
         cartReadout.setPosition(20 + cart.length, 100);
         cartReadout.setPosition(cartReadout.x, 60 + c * 12);
@@ -76,7 +77,11 @@ namespace Quiltflower {
 
     controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         if (!isGameLoaded) {
-            Emulator.loadCart(hoveredCart, hoveredCart.functionToLoad());
+            if (hoveredCart != null) {
+                Emulator.loadCart(hoveredCart, hoveredCart.functionToLoad());
+            } else {
+                console.log("Cannot run null cart!")
+            }
         }
     });
 
@@ -86,4 +91,8 @@ namespace Quiltflower {
             hoveredCart = Emulator.carts.get(hover - 1);
         }
     });
+}
+
+namespace SpriteKind {
+    export let UI = SpriteKind.create();
 }
