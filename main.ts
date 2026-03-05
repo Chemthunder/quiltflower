@@ -1,7 +1,7 @@
 console.log("Thank you for using Quiltflower game emulator! Consider supporting me on GitHub: " + "github.com/chemthunder" + "! Thank you!");
 console.log("If you enjoyed using Quiltflower, check out my other projects, such as Hyacinth!");
 let isGameLoaded: boolean = false;
-let versionNumber: number = 1.4;
+let versionNumber: number = 1.5;
 
 /* Quiltflower   */
 namespace Quiltflower {
@@ -30,8 +30,8 @@ namespace Quiltflower {
     let hover: number = 0;
     let hoveredCart: Emulator.Cart = null;
 
-    let testCart: Emulator.Cart = Emulator.bootstrapNew("Test", 0, Carts._runTest);
-    let main: Emulator.Cart = Emulator.bootstrapNew("Main", 1, Carts._runMain);
+    export let testCart: Emulator.Cart = Emulator.bootstrapNew("Test", 0, Carts._runTest);
+    export let main: Emulator.Cart = Emulator.bootstrapNew("Main", 1, Carts._runMain);
 
     let c = -4;
     hover = 1;
